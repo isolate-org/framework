@@ -1,0 +1,36 @@
+{
+    "name": "isolate/framework",
+    "description": "Framework is an implementation of Unit of Work and Lazy Objects component with Isolate abstraction layer.",
+    "keywords": ["isolate", "bridge", "unit of work", "lazy objects", "framework"],
+    "require": {
+        "php": ">=5.4.0",
+        "isolate/isolate": "1.0.*@dev",
+        "isolate/unit-of-work": "1.0.*@dev",
+        "isolate/lazy-objects": "1.0.*@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "phpspec/phpspec": "2.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Isolate": "src/",
+            "Isolate\\Tests": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Norbert Orzechowicz",
+            "email": "norbert@orzechowicz.pl"
+        }
+    ]
+}
