@@ -1,6 +1,6 @@
 {
     "name": "isolate/framework",
-    "description": "Framework is an implementation of Unit of Work and Lazy Objects component with Isolate abstraction layer.",
+    "description": "Framework is an implementation of Unit of Work and Lazy Objects components with Isolate abstraction layer.",
     "keywords": ["isolate", "bridge", "unit of work", "lazy objects", "framework"],
     "require": {
         "php": ">=5.4.0",
