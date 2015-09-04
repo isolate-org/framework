@@ -1,12 +1,16 @@
 <?php
 
-namespace Isolate\PersistenceContext;
+namespace Isolate\Framework\PersistenceContext;
 
 use Isolate\Exception\NotClosedTransactionException;
 use Isolate\Exception\NotOpenedTransactionException;
 use Isolate\PersistenceContext;
+use Isolate\PersistenceContext\Name;
 use Isolate\PersistenceContext\Transaction\Factory as TransactionFactory;
 
+/**
+ * @api
+ */
 final class IsolateContext implements PersistenceContext
 {
     /**

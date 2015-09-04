@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Isolate\PersistenceContext;
+namespace spec\Isolate\Framework\PersistenceContext;
 
 use Isolate\Exception\NotClosedTransactionException;
 use Isolate\Exception\NotOpenedTransactionException;

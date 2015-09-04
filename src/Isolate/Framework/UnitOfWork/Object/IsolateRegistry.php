@@ -1,11 +1,18 @@
 <?php
 
-namespace Isolate\UnitOfWork\Object;
+namespace Isolate\Framework\UnitOfWork\Object;
 
 use Isolate\LazyObjects\Proxy\LazyProperty;
 use Isolate\LazyObjects\WrappedObject;
-use Isolate\UnitOfWork\LazyObjects\InitializationCallback;
+use Isolate\UnitOfWork\Object\PropertyAccessor;
+use Isolate\UnitOfWork\Object\PropertyCloner;
+use Isolate\UnitOfWork\Object\Registry;
+use Isolate\UnitOfWork\Object\SnapshotMaker;
+use Isolate\Framework\UnitOfWork\LazyObjects\InitializationCallback;
 
+/**
+ * @api
+ */
 class IsolateRegistry implements Registry
 {
     /**

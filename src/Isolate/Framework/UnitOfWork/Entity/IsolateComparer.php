@@ -1,8 +1,9 @@
 <?php
 
-namespace Isolate\UnitOfWork\Entity;
+namespace Isolate\Framework\UnitOfWork\Entity;
 
 use Isolate\LazyObjects\WrappedObject;
+use Isolate\UnitOfWork\Entity\Comparer;
 
 class IsolateComparer extends Comparer
 {

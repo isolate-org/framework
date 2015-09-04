@@ -1,6 +1,6 @@
 <?php
 
-namespace Isolate\UnitOfWork\LazyObjects;
+namespace Isolate\Framework\UnitOfWork\LazyObjects;
 
 use Isolate\LazyObjects\Proxy\LazyProperty;
 use Isolate\UnitOfWork\Object\PropertyAccessor;
