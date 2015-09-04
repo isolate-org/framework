@@ -2,18 +2,14 @@
 
 namespace Isolate\Tests;
 
-use Isolate\Framework\UnitOfWork\Entity\IsolateComparer;
-use Isolate\Framework\UnitOfWork\Entity\IsolateIdentifier;
-use Isolate\Framework\UnitOfWork\Object\IsolateRegistry;
+use Isolate\Framework\UnitOfWork\Entity\DefinitionCollection;
 use Isolate\LazyObjects\Proxy\Adapter\OcramiusProxyManager\Factory;
 use Isolate\LazyObjects\Wrapper;
-use Isolate\UnitOfWork\CommandBus\SilentBus;
-use Isolate\UnitOfWork\Entity\ChangeBuilder;
+use Isolate\Tests\ClassDefinition\EntityDefinitionFactory;
+use Isolate\Tests\LazyObjects\DefinitionFactory;
 use Isolate\UnitOfWork\Entity\Definition;
 use Isolate\UnitOfWork\Entity\Value\Change\ScalarChange;
 use Isolate\UnitOfWork\Entity\Value\ChangeSet;
-use Isolate\UnitOfWork\Object\PropertyCloner;
-use Isolate\UnitOfWork\Object\SnapshotMaker\Adapter\DeepCopy\SnapshotMaker;
 use Isolate\UnitOfWork\UnitOfWork;
 use Isolate\Tests\ClassDefinition\EntityFakeBuilder;
 use Isolate\Tests\Double\EditCommandHandlerMock;
@@ -21,7 +17,7 @@ use Isolate\Tests\Double\EntityFake;
 use Isolate\Tests\Double\NewCommandHandlerMock;
 use Isolate\Tests\Double\RemoveCommandHandlerMock;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Isolate\Tests\LazyObjects\EntityFakeBuilder as EntityFakeLazyObjectBuilder;
+use Isolate\Framework\LazyObjects\DefinitionCollection as LazyObjectsDefinitionCollection;
 
 class UnitOfWorWithLazyObjectsTest extends \PHPUnit_Framework_TestCase
 {
@@ -131,27 +127,18 @@ class UnitOfWorWithLazyObjectsTest extends \PHPUnit_Framework_TestCase
     private function createUnitOfWork()
     {
         $this->uowEntityFakeDefinition = EntityFakeBuilder::buildDefinition();
-        $this->uowEntityFakeDefinition->setNewCommandHandler(new NewCommandHandlerMock());
-        $this->uowEntityFakeDefinition->setEditCommandHandler(new EditCommandHandlerMock());
-        $this->uowEntityFakeDefinition->setRemoveCommandHandler(new RemoveCommandHandlerMock());
-
-        $definitions = new Definition\Repository\InMemory([$this->uowEntityFakeDefinition]);
-        $identifier = new IsolateIdentifier($definitions);
-
-        return new UnitOfWork(
-            new IsolateRegistry(new SnapshotMaker(), new PropertyCloner()),
-            $identifier,
-            new ChangeBuilder($definitions, $identifier),
-            new IsolateComparer($definitions),
-            new SilentBus($definitions)
-        );
+        $definitionsCollection = new DefinitionCollection([new EntityDefinitionFactory($this->uowEntityFakeDefinition)]);
+        
+        return (new \Isolate\Framework\UnitOfWork\Factory($definitionsCollection))->create();
     }
 
     private function createLazyObjectsWrapper($itemsInitializerValue = null)
     {
-        $entityFakeDefinition = EntityFakeLazyObjectBuilder::buildDefinition($itemsInitializerValue);
-
-        return new Wrapper(new Factory(new Factory\LazyObjectsFactory()), [$entityFakeDefinition]);
+        $definitionsCollection = new LazyObjectsDefinitionCollection([
+            new DefinitionFactory($itemsInitializerValue)
+        ]);
+            
+        return new Wrapper(new Factory(new Factory\LazyObjectsFactory()), $definitionsCollection);
     }
 
     /**
