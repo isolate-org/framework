@@ -2,24 +2,19 @@
 
 namespace Isolate\Tests;
 
+use Isolate\Framework\UnitOfWork\Entity\IsolateComparer;
+use Isolate\Framework\UnitOfWork\Entity\IsolateIdentifier;
+use Isolate\Framework\UnitOfWork\Object\IsolateRegistry;
 use Isolate\LazyObjects\Proxy\Adapter\OcramiusProxyManager\Factory;
 use Isolate\LazyObjects\Wrapper;
 use Isolate\UnitOfWork\CommandBus\SilentBus;
 use Isolate\UnitOfWork\Entity\ChangeBuilder;
 use Isolate\UnitOfWork\Entity\Definition;
-use Isolate\UnitOfWork\Entity\InformationPoint;
-use Isolate\UnitOfWork\Entity\IsolateComparer;
-use Isolate\UnitOfWork\Entity\IsolateIdentifier;
-use Isolate\UnitOfWork\Entity\IsolateInformationPoint;
 use Isolate\UnitOfWork\Entity\Value\Change\ScalarChange;
 use Isolate\UnitOfWork\Entity\Value\ChangeSet;
-use Isolate\UnitOfWork\EntityStates;
-use Isolate\UnitOfWork\Object\IsolateRegistry;
 use Isolate\UnitOfWork\Object\PropertyCloner;
-use Isolate\UnitOfWork\Object\RecoveryPoint;
 use Isolate\UnitOfWork\Object\SnapshotMaker\Adapter\DeepCopy\SnapshotMaker;
 use Isolate\UnitOfWork\UnitOfWork;
-use Isolate\EventListener\UnitOfWorkSubscriber;
 use Isolate\Tests\ClassDefinition\EntityFakeBuilder;
 use Isolate\Tests\Double\EditCommandHandlerMock;
 use Isolate\Tests\Double\EntityFake;
