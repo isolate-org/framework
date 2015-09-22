@@ -1,6 +1,7 @@
 # Isolate Symfony Bundle
 
 [![Build Status](https://travis-ci.org/isolate-org/framework.svg)](https://travis-ci.org/isolate-org/framework)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/q2fyp55f4b6u8apw/branch/master?svg=true)](https://ci.appveyor.com/project/norzechowicz/framework/branch/master)
 [![Latest Stable Version](https://poser.pugx.org/isolate/framework/v/stable)](https://packagist.org/packages/isolate/framework)
 [![Total Downloads](https://poser.pugx.org/isolate/framework/downloads)](https://packagist.org/packages/isolate/framework)
 [![Latest Unstable Version](https://poser.pugx.org/isolate/framework/v/unstable)](https://packagist.org/packages/isolate/framework)
