@@ -93,6 +93,6 @@ final class IsolateContext implements PersistenceContext
 
         $this->transaction->commit();
 
-        unset($this->transaction);
+        $this->transaction = null;
     }
 }
